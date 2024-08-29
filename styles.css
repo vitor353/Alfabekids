@@ -1,0 +1,106 @@
+body {
+    font-family: 'Comic Sans MS', sans-serif;
+    background-color: #e0f7fa; /* Cor de fundo mais suave */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #ffccbc; /* Cor de fundo mais quente e amigável */
+    text-align: center;
+    padding: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    text-align: center;
+}
+
+.logo {
+    width: 120px; /* Ajusta o tamanho da logo */
+}
+
+h1 {
+    font-size: 40px;
+    color: #ff5722; /* Cor laranja mais vibrante */
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que os itens se movam para baixo em telas menores */
+}
+
+nav ul li {
+    margin: 5px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #ff5722; /* Cor laranja vibrante */
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #ff7043; /* Cor de hover mais clara */
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+.level-section {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 32px;
+    color: #00796b; /* Cor verde mais suave */
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+img {
+    border-radius: 15px;
+    margin-top: 10px;
+    width: 80%; /* Ajusta o tamanho das imagens */
+    max-width: 300px; /* Limita o tamanho máximo das imagens */
+}
+
+footer {
+    background-color: #ffccbc;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
+    color: #333;
+}
+
+.who-we-are {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}

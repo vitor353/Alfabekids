@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOME</title>
+    
+    
+
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Comic Sans MS', sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .logo {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+
+        h1, h2 {
+            color: #67abea;
+        }
+
+        #nameCanvas {
+            border: 2px solid #67abea;
+            width: 90%;
+            height: 300px;
+            margin-bottom: 20px;
+            background-color: #f8f8ff;
+        }
+
+        .age-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .age-button {
+            background-color: #1e90ff;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .age-button:hover {
+            background-color: #005cbf;
+            transform: scale(1.1);
+        }
+
+        #submitButton {
+            background-color: #1e90ff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 10px;
+        }
+
+        #submitButton:hover {
+            background-color: #005cbf;
+            transform: scale(1.05);
+        }
+
+        .mascot-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        #mascotContainer {
+            text-align: center;
+        }
+
+        #mascot {
+            width: 80%;
+            height: auto;
+            max-width: 600px;
+            border-radius: 15px;
+        }
+
+        .background-decorations {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .background-decorations .star,
+        .background-decorations .cloud {
+            position: absolute;
+            opacity: 0.8;
+        }
+
+        .star {
+            width: 50px;
+            height: 50px;
+            background-color: yellow;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .cloud {
+            width: 100px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0px 20px 60px #b0c4de, 40px 0px 60px #b0c4de, -40px 0px 60px #b0c4de;
+            animation: sway 10s ease-in-out infinite;
+        }
+
+        .star:nth-child(1) {
+            top: 70%;
+            left: 10%;
+        }
+
+        .star:nth-child(2) {
+            top: 30%;
+            right: 5%;
+        }
+
+        .cloud:nth-child(3) {
+            top: 50%;
+            left: 10%;
+        }
+
+        .cloud:nth-child(4) {
+            top: 70%;
+            right: 2%;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes sway {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+            100% { transform: translateX(0); }
+        }
+
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .color-palette .color {
+            width: 30px;
+            height: 30px;
+            margin: 0 5px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #ccc;
+            transition: transform 0.3s ease;
+        }
+
+        .color-palette .color:hover {
+            transform: scale(1.2);
+        }
+
+        .color.active {
+            border-color: #000;
+        }
+
+        .play-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .play-container:hover {
+            transform: scale(1.1);
+        }
+
+        .play-triangle {
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 35px solid #ffffff;
+            transform: rotate(90deg);
+            margin-right: 10px;
+        }
+
+        .play-text {
+            font-size: 25px;
+            color: #ffffff;
+            font-weight: bold;
+            font-family: 'Comic Sans MS', sans-serif;
+        }
+
+        button {
+            outline: none;
+            border: none;
+        }
+    </style>
+</head>
+</head>
+
+
+
+
+
+
+
+
+
+<body>
+    <div class="background-decorations">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+    </div>
+
+    <div class="mascot-overlay" id="mascotOverlay">
+        <div id="mascotContainer">
+            <video src="Logos/3-1- (1).mp4" alt="Mascote" id="mascot" autoplay muted loop></video>
+        </div>
+    </div>
+
+    <div class="container">
+        <img src="Logos/Mídia-removebg-preview.png" alt="Logo" class="logo">
+        <h1>Desenhe seu Nome</h1>
+        <div class="color-palette">
+            <div class="color" data-color="#ff0000" style="background-color: #ff0000;"></div>
+            <div class="color" data-color="#00ff00" style="background-color: #00ff00;"></div>
+            <div class="color" data-color="#0000ff" style="background-color: #0000ff;"></div>
+            <div class="color" data-color="#ffff00" style="background-color: #ffff00;"></div>
+            <div class="color" data-color="#ff00ff" style="background-color: #ff00ff;"></div>
+            <div class="color" data-color="#00ffff" style="background-color: #00ffff;"></div>
+        </div>
+        <canvas id="nameCanvas"></canvas>
+        <h2>Escolha sua Idade</h2>
+        <div class="age-buttons" id="ageButtons">
+            <button class="age-button" data-age="4">4 anos</button>
+            <button class="age-button" data-age="5">5 anos</button>
+            <button class="age-button" data-age="6">6 anos</button>
+            <button class="age-button" data-age="7">7 anos</button>
+            <button class="age-button" data-age="8">8 anos</button>
+            <button class="age-button" data-age="9">9 anos</button>
+            <button class="age-button" data-age="10">10 anos</button>
+        </div>
+        <button id="submitButton">
+            <a href="aprendizagem.html" class="play-container">
+                <div class="play-triangle"></div>
+                <span class="play-text">Continuar</span>
+            </a>
+        </button>
+    </div>
+
+</body>
+</html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const nameCanvas = document.getElementById('nameCanvas');
+        const context = nameCanvas.getContext('2d');
+        const mascotOverlay = document.getElementById('mascotOverlay');
+        const submitButton = document.getElementById('submitButton');
+        const ageButtons = document.querySelectorAll('.age-button');
+        const colorButtons = document.querySelectorAll('.color-palette .color');
+        
+        let selectedAge = null;
+        let drawing = false;
+        let currentColor = '#000000'; // Cor preta padrão
+        
+        nameCanvas.width = nameCanvas.offsetWidth;
+        nameCanvas.height = nameCanvas.offsetHeight;
+
+        function startDrawing(event) {
+            drawing = true;
+            draw(event);
+        }
+
+        function endDrawing() {
+            drawing = false;
+            context.beginPath();
+        }
+
+        function draw(event) {
+            if (!drawing) return;
+            context.lineWidth = 5;
+            context.lineCap = 'round';
+            context.strokeStyle = currentColor;
+
+            const rect = nameCanvas.getBoundingClientRect();
+            context.lineTo(event.clientX - rect.left, event.clientY - rect.top);
+            context.stroke();
+            context.beginPath();
+            context.moveTo(event.clientX - rect.left, event.clientY - rect.top);
+        }
+
+        nameCanvas.addEventListener('mousedown', startDrawing);
+        nameCanvas.addEventListener('mouseup', endDrawing);
+        nameCanvas.addEventListener('mousemove', draw);
+
+        // Ocultar o mascote ao clicar
+        mascotOverlay.addEventListener('click', function () {
+            mascotOverlay.style.display = 'none';
+        });
+
+        // Seleção de cor
+        colorButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                currentColor = this.getAttribute('data-color');
+                
+                // Destaca a cor selecionada
+                colorButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Clique nos botões de idade
+        ageButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                selectedAge = this.getAttribute('data-age');
+                submitButton.disabled = false;
+
+                // Destacar o botão selecionado
+                ageButtons.forEach(btn => btn.style.backgroundColor = '#1e90ff');
+                this.style.backgroundColor = '#005cbf';
+            });
+        });
+
+        // Clique no botão "Continuar"
+        submitButton.addEventListener('click', function () {
+            if (selectedAge) {
+                window.location.href = 'aprendizagem.html'; // Redireciona diretamente para a página desejada
+            }
+        });
+    });
+</script>
+
+
+
